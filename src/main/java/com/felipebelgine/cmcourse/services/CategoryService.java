@@ -1,6 +1,7 @@
 package com.felipebelgine.cmcourse.services;
 
 import com.felipebelgine.cmcourse.domain.Category;
+import com.felipebelgine.cmcourse.services.exceptions.ObjectNotFoundException;
 import com.felipebelgine.cmcourse.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class CategoryService {
 
     public Category find(Integer id) {
         Optional<Category> obj = repo.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException(
+                "Object not found! Id: " + id + ", Type: " + Category.class.getName()
+        ));
     }
 }
