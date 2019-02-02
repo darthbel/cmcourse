@@ -1,4 +1,4 @@
-package com.felipebelgine.cursomc;
+package com.felipebelgine.cmcourse;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

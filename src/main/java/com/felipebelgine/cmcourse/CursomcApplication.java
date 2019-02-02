@@ -1,4 +1,4 @@
-package com.felipebelgine.cursomc;
+package com.felipebelgine.cmcourse;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
