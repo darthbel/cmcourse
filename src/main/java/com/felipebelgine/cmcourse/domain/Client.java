@@ -1,5 +1,6 @@
 package com.felipebelgine.cmcourse.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.felipebelgine.cmcourse.enums.ClientType;
 
@@ -27,6 +28,7 @@ public class Client implements Serializable {
     @CollectionTable(name = "PHONE_NO")
     private Set<String> phoneNumbers = new HashSet<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy = "client")
     private List<PurchaseOrder> purchaseOrders = new ArrayList<>();
 

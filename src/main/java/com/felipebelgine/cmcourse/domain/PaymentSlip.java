@@ -1,5 +1,6 @@
 package com.felipebelgine.cmcourse.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.felipebelgine.cmcourse.enums.PaymentStatus;
 
 import javax.persistence.Entity;
@@ -9,7 +10,10 @@ import java.util.Date;
 public class PaymentSlip extends Payment {
     private static final long serialVersionUID = 1L;
 
+    @JsonFormat(pattern = "dd/MM/yyy")
     private Date expiryDate;
+
+    @JsonFormat(pattern = "dd/MM/yyy")
     private Date paymentDate;
 
     public PaymentSlip() {
