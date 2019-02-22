@@ -1,5 +1,7 @@
 package com.felipebelgine.cmcourse.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,6 +18,7 @@ public class Address implements Serializable {
     private String street2;
     private String zip;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
@@ -83,6 +86,14 @@ public class Address implements Serializable {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     @Override
