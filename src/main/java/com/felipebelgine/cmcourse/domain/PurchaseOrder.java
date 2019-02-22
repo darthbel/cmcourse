@@ -1,7 +1,6 @@
 package com.felipebelgine.cmcourse.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,11 +20,9 @@ public class PurchaseOrder implements Serializable {
      @JsonFormat(pattern = "dd/MM/yyy HH:mm")
      private Date time;
 
-     @JsonManagedReference
      @OneToOne(cascade = CascadeType.ALL, mappedBy = "purchaseOrder")
      private Payment payment;
 
-     @JsonManagedReference
      @ManyToOne
      @JoinColumn(name = "client_id")
      private Client client;
