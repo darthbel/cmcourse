@@ -1,9 +1,11 @@
 package com.felipebelgine.cmcourse.services;
 
 import com.felipebelgine.cmcourse.domain.Category;
+import com.felipebelgine.cmcourse.services.exceptions.DataIntegrityException;
 import com.felipebelgine.cmcourse.services.exceptions.ObjectNotFoundException;
 import com.felipebelgine.cmcourse.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -30,4 +32,15 @@ public class CategoryService {
         find(obj.getId());
         return repo.save(obj);
     }
+
+    public void delete(Integer id) {
+        find(id);
+        try {
+            repo.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("It is not possible to delete a category that has products");
+        }
+    }
+
 }
