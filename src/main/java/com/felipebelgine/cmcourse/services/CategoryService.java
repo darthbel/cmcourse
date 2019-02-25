@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,6 +42,10 @@ public class CategoryService {
         catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("It is not possible to delete a category that has products");
         }
+    }
+
+    public List<Category> findAll() {
+        return repo.findAll();
     }
 
 }
