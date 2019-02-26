@@ -1,6 +1,7 @@
 package com.felipebelgine.cmcourse.services;
 
 import com.felipebelgine.cmcourse.domain.Category;
+import com.felipebelgine.cmcourse.dto.CategoryDTO;
 import com.felipebelgine.cmcourse.services.exceptions.DataIntegrityException;
 import com.felipebelgine.cmcourse.services.exceptions.ObjectNotFoundException;
 import com.felipebelgine.cmcourse.repositories.CategoryRepository;
@@ -54,6 +55,10 @@ public class CategoryService {
     public Page<Category> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
+    }
+
+    public Category fromDTO(CategoryDTO objDto) {
+        return new Category(objDto.getId(), objDto.getName());
     }
 
 }

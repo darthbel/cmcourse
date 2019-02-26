@@ -2,13 +2,18 @@ package com.felipebelgine.cmcourse.dto;
 
 
 import com.felipebelgine.cmcourse.domain.Category;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 public class CategoryDTO implements Serializable {
     private static final long setrialVersionUID = 1L;
 
     private Integer id;
+
+    @NotEmpty(message = "Field is mandatory")
+    @Length(min = 5, max = 80, message = "Length should be between 5 and 80 characters")
     private String name;
 
     public CategoryDTO() {
