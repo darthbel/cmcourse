@@ -5,7 +5,6 @@ import com.felipebelgine.cmcourse.dto.CategoryDTO;
 import com.felipebelgine.cmcourse.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;

@@ -38,7 +38,7 @@ public class Client implements Serializable {
         this.name = name;
         this.email = email;
         this.sinNo = sinNo;
-        this.clientType = clientType.getCod();
+        this.clientType = (clientType==null) ? null : clientType.getCod();
     }
 
     public Integer getId() {
