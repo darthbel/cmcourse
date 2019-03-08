@@ -16,7 +16,7 @@ public class Client implements Serializable {
     private Integer id;
     private String name;
     private String email;
-    private String sinNo;
+    private String cpfOrCnpj;
     private Integer clientType;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
@@ -33,11 +33,11 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(Integer id, String name, String email, String sinNo, ClientType clientType) {
+    public Client(Integer id, String name, String email, String cpfOrCnpj, ClientType clientType) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.sinNo = sinNo;
+        this.cpfOrCnpj = cpfOrCnpj;
         this.clientType = (clientType==null) ? null : clientType.getCod();
     }
 
@@ -65,12 +65,12 @@ public class Client implements Serializable {
         this.email = email;
     }
 
-    public String getSinNo() {
-        return sinNo;
+    public String getCpfOrCnpj() {
+        return cpfOrCnpj;
     }
 
-    public void setSinNo(String sinNo) {
-        this.sinNo = sinNo;
+    public void setCpfOrCnpj(String cpfOrCnpj) {
+        this.cpfOrCnpj = cpfOrCnpj;
     }
 
     public ClientType getClientType() {

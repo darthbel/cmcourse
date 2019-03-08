@@ -81,7 +81,7 @@ public class ClientService {
     public Client fromDTO(NewClientDTO objDto) {
         Client cli = new Client(
                 null, objDto.getName(),
-                objDto.getEmail(), objDto.getSinNo(),
+                objDto.getEmail(), objDto.getCpfOrCnpj(),
                 ClientType.toEnum(objDto.getClientType()));
         City city = new City(objDto.getCityId(), null, null);
         Address addr = new Address(

@@ -1,21 +1,44 @@
 package com.felipebelgine.cmcourse.dto;
 
+import com.felipebelgine.cmcourse.services.validation.ClientInsert;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+@ClientInsert
 public class NewClientDTO implements Serializable {
     private static final long setrialVersionUID = 1L;
 
+    @NotEmpty(message = "Field is mandatory")
+    @Length(min = 5, max = 120, message = "Length should be between 5 and 120 characters")
     private String name;
+
+    @NotEmpty(message = "Field is mandatory")
+    @Email(message = "Invalid email")
     private String email;
-    private String sinNo;
+
+    @NotEmpty(message = "Field is mandatory")
+    private String cpfOrCnpj;
+
     private Integer clientType;
 
+    @NotEmpty(message = "Field is mandatory")
     private String number;
+
+    @NotEmpty(message = "Field is mandatory")
     private String street;
+
     private String street2;
+
+    @NotEmpty(message = "Field is mandatory")
     private String zip;
 
+    @NotEmpty(message = "Field is mandatory")
     private String phone1;
+
     private String phone2;
     private String phone3;
 
@@ -40,12 +63,12 @@ public class NewClientDTO implements Serializable {
         this.email = email;
     }
 
-    public String getSinNo() {
-        return sinNo;
+    public String getCpfOrCnpj() {
+        return cpfOrCnpj;
     }
 
-    public void setSinNo(String sinNo) {
-        this.sinNo = sinNo;
+    public void setCpfOrCnpj(String cpfOrCnpj) {
+        this.cpfOrCnpj = cpfOrCnpj;
     }
 
     public Integer getClientType() {
