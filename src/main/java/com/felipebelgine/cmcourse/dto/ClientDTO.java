@@ -2,12 +2,14 @@ package com.felipebelgine.cmcourse.dto;
 
 
 import com.felipebelgine.cmcourse.domain.Client;
+import com.felipebelgine.cmcourse.services.validation.ClientUpdate;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+@ClientUpdate
 public class ClientDTO implements Serializable {
     private static final long setrialVersionUID = 1L;
 
