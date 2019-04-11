@@ -1,12 +1,14 @@
 package com.felipebelgine.cmcourse.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.felipebelgine.cmcourse.enums.PaymentStatus;
 
 import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
+@JsonTypeName("slipPayment")
 public class PaymentSlip extends Payment {
     private static final long serialVersionUID = 1L;
 
