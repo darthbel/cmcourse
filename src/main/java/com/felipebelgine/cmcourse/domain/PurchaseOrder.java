@@ -4,10 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Entity
 public class PurchaseOrder implements Serializable {
@@ -112,5 +111,29 @@ public class PurchaseOrder implements Serializable {
      @Override
      public int hashCode() {
           return Objects.hash(id);
+     }
+
+     @Override
+     public String toString() {
+          NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("en", "CA"));
+          SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd h:mm:ss a");
+          final StringBuilder sb = new StringBuilder("PurchaseOrder{");
+          sb.append("Order number: ");
+          sb.append(getId());
+          sb.append(", Order Time: ");
+          sb.append(sdf.format(getTime()));
+          sb.append(", Customer: ");
+          sb.append(getClient().getName());
+          sb.append(", Payment Status: ");
+          sb.append(getPayment().getStatus().getDesc());
+          sb.append("\nDetails:\n");
+
+          for (OrderItem oi : getItems()) {
+               sb.append(oi.toString());
+          }
+
+          sb.append("Total Value: ");
+          sb.append(nf.format(getTotalValue()));
+          return sb.toString();
      }
 }

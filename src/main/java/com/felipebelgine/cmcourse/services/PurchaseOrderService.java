@@ -11,6 +11,7 @@ import com.felipebelgine.cmcourse.repositories.PurchaseOrderRepository;
 import com.felipebelgine.cmcourse.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Optional;
@@ -20,6 +21,9 @@ public class PurchaseOrderService {
 
     @Autowired
     private PurchaseOrderRepository repo;
+
+    @Autowired
+    private ClientService clientService;
 
     @Autowired
     private PaymentSlipService paymentSlipService;
@@ -40,9 +44,11 @@ public class PurchaseOrderService {
         ));
     }
 
+    @Transactional
     public PurchaseOrder insert(PurchaseOrder obj) {
         obj.setId(null);
         obj.setTime(new Date());
+        obj.setClient(clientService.find(obj.getClient().getId()));
         obj.getPayment().setStatus(PaymentStatus.PENDING);
         obj.getPayment().setPurchaseOrder(obj);
         if(obj.getPayment() instanceof PaymentSlip) {
@@ -53,10 +59,12 @@ public class PurchaseOrderService {
         paymentRepo.save(obj.getPayment());
         for(OrderItem oi : obj.getItems()) {
             oi.setDiscount(0.0);
-            oi.setPrice(productService.find(oi.getProduct().getId()).getPrice());
+            oi.setProduct(productService.find(oi.getProduct().getId()));
+            oi.setPrice(oi.getProduct().getPrice());
             oi.setPurchaseOrder(obj);
         }
         orderItemRepository.saveAll(obj.getItems());
+        System.out.println(obj);
         return obj;
     }
 }
