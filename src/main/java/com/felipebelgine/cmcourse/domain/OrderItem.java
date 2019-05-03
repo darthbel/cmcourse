@@ -101,8 +101,7 @@ public class OrderItem implements Serializable {
     @Override
     public String toString() {
         NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("en", "CA"));
-        final StringBuffer sb = new StringBuffer("OrderItem{");
-        sb.append(getProduct().getName());
+        final StringBuffer sb = new StringBuffer(getProduct().getName());
         sb.append(", Qty: ");
         sb.append(getQuantity());
         sb.append(", Individual price: ");

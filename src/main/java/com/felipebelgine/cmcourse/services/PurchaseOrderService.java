@@ -37,6 +37,9 @@ public class PurchaseOrderService {
     @Autowired
     private OrderItemRepository orderItemRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     public PurchaseOrder find(Integer id) {
         Optional<PurchaseOrder> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -64,7 +67,7 @@ public class PurchaseOrderService {
             oi.setPurchaseOrder(obj);
         }
         orderItemRepository.saveAll(obj.getItems());
-        System.out.println(obj);
+        emailService.sendOrderConfirmationEmail(obj);
         return obj;
     }
 }
